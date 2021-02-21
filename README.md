@@ -2,13 +2,13 @@
 Aplikasi untuk membuat dan mengerjakan Quiz Online.
 
 
-✅  BERBASIS ONLINE
+✅  BERBASIS ONLINE -
 Kerjakan Quiz dari mana saja yang kamu mau
 
-✅  SISTEM PENILAIAN OTOMATIS
+✅  SISTEM PENILAIAN OTOMATIS -
 Dapatkan nilai dari Quiz yang telah kamu kerjakan secara langsung
 
-✅. AMAN
+✅. AMAN -
 Aplikasi akan terkunci secara otomatis apabila pengguna membuka aplikasi lain ketika sedang mengerjakan Quiz
 
 Tech Stack :
