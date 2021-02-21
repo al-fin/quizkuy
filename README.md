@@ -16,7 +16,8 @@ Tech Stack :
 - Dashboard : React JS + Material UI
 - Backend : Codeigniter + MySQL
 
-![image](https://i.ibb.co/ZTMVR7S/1.png)
-![image](https://i.ibb.co/2gNkXJy/2.png)
-![image](https://i.ibb.co/yFZCqNb/3.png)
+<img align="left" width="200"  src="https://i.ibb.co/ZTMVR7S/1.png">
+<img align="left" width="200"  src="https://i.ibb.co/2gNkXJy/2.png">
+<img align="left" width="200"  src="https://i.ibb.co/yFZCqNb/3.png">
+
 ![image](https://i.ibb.co/f89Qmyb/Dashboard.png)
