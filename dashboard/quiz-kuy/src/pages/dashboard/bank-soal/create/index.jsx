@@ -13,13 +13,14 @@ import { useGlobalDispatch } from 'contexts/global';
 import axios from 'axios';
 import { listPelajaran } from 'services/pelajaran';
 import Tooltip from '@material-ui/core/Tooltip';
-import { green, orange } from '@material-ui/core/colors';
+import { green, orange, blue } from '@material-ui/core/colors';
 import { uuid } from 'utils';
 import Grow from '@material-ui/core/Grow';
 import UploadImage from 'components/upload-image';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 
 const validationSchema = yup.object().shape({
   judul: yup.string().label('Judul').required(),
@@ -53,7 +54,7 @@ export default function Create() {
   const history = useHistory();
   const classes = useStyles();
   const dispatch = useGlobalDispatch();
-  const { sendSuccess } = useNotification();
+  const { sendSuccess, sendWarning } = useNotification();
 
   const [soal, setSoal] = React.useState([]);
   const [isSubmitted, setSubmitted] = React.useState(false);
@@ -111,6 +112,31 @@ export default function Create() {
         dispatch({ loading: false });
       });
   }, []);
+
+  function handleDuplicateSoal(index) {
+    const target = prompt('Mau di-duplikat ke no berapa?');
+    if (target != null) {
+      if (Number(target) <= values.jumlah_soal) {
+        const _newSoal = soal;
+        _newSoal[target - 1] = soal[index];
+        setSoal([
+          ..._newSoal.map((item) => ({
+            ...item,
+            key: uuid(),
+          })),
+        ]);
+        sendSuccess('Soal berhasil di-duplikat !');
+      } else {
+        sendWarning(
+          `Gagal duplikat soal, Nomor soal tidak boleh lebih dari ${values.jumlah_soal} !`
+        );
+      }
+    }
+  }
+
+  React.useEffect(() => {
+    console.log('SOAL', soal);
+  }, [soal]);
 
   const handleTambah = () => {
     validationSchema
@@ -284,6 +310,20 @@ export default function Create() {
                         fontWeight: 300,
                       }}
                     />
+                    <Tooltip arrow title="Duplikat Soal">
+                      <span
+                        onClick={() => handleDuplicateSoal(index)}
+                        className={classes.soalHeaderBadge}
+                        style={{
+                          background: blue[400],
+                          marginRight:
+                            values.jenis_soal == 'PILIHAN GANDA' ? 10 : 0,
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <FileCopyOutlinedIcon />
+                      </span>
+                    </Tooltip>
                     {values.jenis_soal == 'PILIHAN GANDA' && (
                       <Tooltip arrow title="Kunci Jawaban">
                         <span
@@ -311,6 +351,7 @@ export default function Create() {
                   )}
 
                   <Input
+                    defaultValue={item.pertanyaan}
                     label="Pertanyaan :"
                     placeholder="Tulis pertanyaan di sini..."
                     onBlur={(e) => handleChangeSoal(e, index, 'pertanyaan')}
@@ -333,6 +374,7 @@ export default function Create() {
                               }
                             />
                           }
+                          defaultValue={item[option]}
                           onBlur={(e) => handleChangeSoal(e, index, option)}
                           placeholder={option.toUpperCase()}
                         />
@@ -342,6 +384,7 @@ export default function Create() {
 
                   {values.jenis_soal == 'ESSAY' && (
                     <Input
+                      defaultValue={item.kunci_jawaban}
                       label="Kunci Jawaban :"
                       placeholder="Tulis kunci jawaban di sini..."
                       onBlur={(e) =>

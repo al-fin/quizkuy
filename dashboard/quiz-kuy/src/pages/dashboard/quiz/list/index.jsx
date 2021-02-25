@@ -79,7 +79,7 @@ export default function List() {
           {
             title: 'Tanggal',
             field: 'tanggal',
-            render: (item) => moment(item.tanggal).format('DD MMMM YYYY'),
+            render: (item) => moment(item.tanggal).format('dddd, DD MMMM YYYY'),
           },
           {
             title: 'Judul Soal',

@@ -46,7 +46,7 @@ export default function Detail() {
     setValues,
     errors,
     handleInputChange,
-    handleChangeDatePicker,
+    handleDatepickerChange,
     handleCheckboxChange,
   } = useForm({
     nama: '',
@@ -224,7 +224,7 @@ export default function Detail() {
                   name="tanggal"
                   label="tanggal"
                   value={values.tanggal}
-                  onChange={handleChangeDatePicker}
+                  onChange={handleDatepickerChange}
                   error={errors?.tanggal}
                 />
               </Grid>

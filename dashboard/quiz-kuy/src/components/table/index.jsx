@@ -116,6 +116,7 @@ const Table = ({
       options={{
         actionsColumnIndex: -1,
         exportButton: true,
+        exportFileName: title,
         emptyRowsWhenPaging: false,
         pageSize: 5,
         pageSizeOptions: [5, 25, 100, 1000],
