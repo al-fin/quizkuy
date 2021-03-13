@@ -408,7 +408,7 @@ class Quiz extends RestController
 
             if ($jawaban_siswa == $kunci_jawaban) {
               $nilai += $NILAI_PER_SOAL;
-              $siswa[$key]['benar'] = (!isset($siswa[$key]['salah']) ? 0 : $siswa[$key]['salah']) + 1;
+              $siswa[$key]['benar'] = (!isset($siswa[$key]['benar']) ? 0 : $siswa[$key]['benar']) + 1;
             } else {
               $siswa[$key]['salah'] = (!isset($siswa[$key]['salah']) ? 0 : $siswa[$key]['salah']) + 1;
             }
